@@ -38,6 +38,8 @@ character4 = {
 $("#character-1-name").text(character1.name)
 $("#character-1-health").text(character1.health)
 
+$("#character-1").data(character1);
+
 console.log("test")
 
 $(".image-placeholder").on("click", function(){
