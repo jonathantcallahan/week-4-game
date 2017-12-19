@@ -109,8 +109,17 @@ var setDefenderStats = function() {
 //console.log($("#character-1").data());
 
 $(".image-placeholder").on("click", function(element){
+
+	if ($(this).attr("class") === "attacker") {
+		return;
+	}
+	
 	clickIterator ++;
 	if (!characterChosen) {
+
+		$(this).removeClass("image-placeholder").addClass("attacker");
+
+
 
 
 	//	console.log($(this).data("character").health);
@@ -144,11 +153,15 @@ $(".image-placeholder").on("click", function(element){
 		character4.setStats();
 		setPlayerStats();
 
+		
+
+//		$("#attacker-health").text(playerHealth);
+
 
 
 		//if ($(this).attr("id") ===
 	} 
-	if (clickIterator === 2) {
+	if (clickIterator === 2 && ($(this).attr("class") === "image-placeholder")) {
 
 		$(this).detach().appendTo("#enemy")
 		selectedDefender = $(this).attr("id")
@@ -187,6 +200,12 @@ $(".fight-button").on("click", function(){
 	} else {
 	defenderHealth -= playerAttack;
 	$(".opponent-health").text(defenderHealth);
+	playerHealth -= defenderAttack;
+	$(".player-health").text(playerHealth);
+	}
+
+	if (playerHealth < 0) {
+		alert("You lose!");
 	}
 
 	if (defenderHealth < 0) {
@@ -200,6 +219,8 @@ $(".fight-button").on("click", function(){
 	if (wins === 3) {
 		alert("You win!!!")
 	}
+
+	playerAttack += 15;
 })
 
 
