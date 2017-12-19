@@ -19,6 +19,9 @@ character1 = {
 		that = this;
 		if (that.attacker === true) {
 				console.log("test success");
+				if (playerHealth) {
+				return;
+			}
 				playerHealth = that.health;
 				playerAttack = that.attack;
 		}
@@ -40,6 +43,9 @@ character2 = {
 		that = this;
 		if (that.attacker === true) {
 			console.log("test success");
+			if (playerHealth) {
+				return;
+			}
 			playerHealth = that.health;
 			playerAttack = that.attack;
 		}
@@ -61,6 +67,9 @@ character3 = {
 		that = this;
 		if (that.attacker === true) {
 			console.log("test success");
+			if (playerHealth) {
+				return;
+			}
 			playerHealth = that.health;
 			playerAttack = that.attack;
 		}
@@ -83,6 +92,9 @@ character4 = {
 		that = this;
 		if (that.attacker === true) {
 			console.log("test success");
+			if (playerHealth) {
+				return;
+			}
 			playerHealth = that.health;
 			playerAttack = that.attack;
 		}
@@ -113,7 +125,7 @@ $(".image-placeholder").on("click", function(element){
 	if ($(this).attr("class") === "attacker") {
 		return;
 	}
-	
+
 	clickIterator ++;
 	if (!characterChosen) {
 
