@@ -119,13 +119,13 @@ var setIconStats = function() {
 	if (character1.attacker) {
 		$("#char-1-health").text(playerHealth)
 	}
-	if (character1.attacker) {
+	if (character2.attacker) {
 		$("#char-2-health").text(playerHealth)
 	}
-	if (character1.attacker) {
+	if (character3.attacker) {
 		$("#char-3-health").text(playerHealth)
 	}
-	if (character1.attacker) {
+	if (character4.attacker) {
 		$("#char-4-health").text(playerHealth)
 	}
 
@@ -143,8 +143,6 @@ var setIconStats = function() {
 	}		
 }
 
-
-alert("Choose an attacker!");
 
 //$("#character-1").data("Character", {name: "obiwan", health: 130, attack: 15});
 //console.log($("#character-1").data());
@@ -194,7 +192,6 @@ $(".image-placeholder").on("click", function(element){
 		character4.setStats();
 		setPlayerStats();
 
-		alert("Choose a defender!");
 
 		
 
