@@ -115,7 +115,36 @@ var setDefenderStats = function() {
 	console.log(defenderHealth)
 }
 
+var setIconStats = function() {
+	if (character1.attacker) {
+		$("#char-1-health").text(playerHealth)
+	}
+	if (character1.attacker) {
+		$("#char-2-health").text(playerHealth)
+	}
+	if (character1.attacker) {
+		$("#char-3-health").text(playerHealth)
+	}
+	if (character1.attacker) {
+		$("#char-4-health").text(playerHealth)
+	}
 
+	if (character1.defender) {
+		$("#char-1-health").text(defenderHealth)
+	}
+	if (character2.defender) {
+		$("#char-2-health").text(defenderHealth)
+	}	
+	if (character3.defender) {
+		$("#char-3-health").text(defenderHealth)
+	}	
+	if (character4.defender) {
+		$("#char-4-health").text(defenderHealth)
+	}		
+}
+
+
+alert("Choose an attacker!");
 
 //$("#character-1").data("Character", {name: "obiwan", health: 130, attack: 15});
 //console.log($("#character-1").data());
@@ -165,6 +194,8 @@ $(".image-placeholder").on("click", function(element){
 		character4.setStats();
 		setPlayerStats();
 
+		alert("Choose a defender!");
+
 		
 
 //		$("#attacker-health").text(playerHealth);
@@ -202,6 +233,7 @@ $(".image-placeholder").on("click", function(element){
 		setDefenderStats();
 		
 		defenderChosen = true;
+
 	}
 
 })
@@ -231,7 +263,7 @@ $(".fight-button").on("click", function(){
 	if (wins === 3) {
 		alert("You win!!!")
 	}
-
+	setIconStats();
 	playerAttack += 15;
 })
 

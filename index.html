@@ -38,7 +38,12 @@
 		.character-image {
 			width: 100%;
 		}
-
+		
+		.character-health {
+			padding-top: 4px;
+			font-weight: bold;
+			color: white;
+		}
 	</style>
 
 </head>
@@ -60,7 +65,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default character-list">
 		<div class="panel-heading">Character List</div>
 		<div class="panel-body">
 			<div id="first-character-container">
@@ -68,20 +73,40 @@
 
 					<div id="character-1" class="image-placeholder">
 						<img src="character1.jpg" class="character-image">
+						<div class="character-health">
+							<span>Health: </span>
+							<span id="char-1-health">100</span>
+						</div>
+						
 					</div>
 
 					<div id="character-2" class="image-placeholder">
 						<img src="character2.jpg" class="character-image">
+
+						<div class="character-health">
+							<span>Health: </span>
+							<span id="char-2-health">120</span>
+						</div>						
 						
 					</div>
 
 					<div id="character-3" class="image-placeholder">
 						<img src="character3.jpg" class="character-image">
+
+						<div class="character-health">
+							<span>Health: </span>
+							<span id="char-3-health">135</span>
+						</div>						
 						
 					</div>
 
 					<div id="character-4" class="image-placeholder">
 						<img src="character4.jpg" class="character-image">
+
+						<div class="character-health">
+							<span>Health: </span>
+							<span id="char-4-health">119</span>
+						</div>
 						
 					</div>
 
