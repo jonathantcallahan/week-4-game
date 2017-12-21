@@ -21,27 +21,6 @@ var starWarsGame = {
 		attack: 20,
 		defender: false,
 		attacker: false,
-		// setStats is run for each character both after characters and defenders are chosen. 
-		// during the character selection the attacker or defender for the character chosen is set to true if 
-		// it is selected based on it's corresponding character in the html. It is identified by 
-		// the id of the div in the html. IF character-one is clicked in the html THEN the attacker/ defender
-		// for that character will be set to true. The set stats function either sets the stats or 
-		// does not based on whether or not that character is an attacker or a defender
-		setStats: function(){
-			if(starWarsGame.characterOne.attacker){
-				// the return is to prevent player health from reseting when a defender is chosen
-				if(starWarsGame.playerHealth){
-					return;
-				}
-				starWarsGame.playerHealth = starWarsGame.characterOne.health;
-				starWarsGame.playerAttack = starWarsGame.characterOne.attack;
-			} 
-
-			if(starWarsGame.characterOne.defender){
-				starWarsGame.defenderHealth = starWarsGame.characterOne.health;
-				starWarsGame.defenderAttack = starWarsGame.characterOne.attack;
-			}
-		}
 	},
 
 	characterTwo: {
@@ -49,20 +28,6 @@ var starWarsGame = {
 		attack: 20,
 		defender: false,
 		attacker: false,
-		setStats: function(){
-			if(starWarsGame.characterTwo.attacker){
-				if(starWarsGame.playerHealth){
-					return;
-				}
-				starWarsGame.playerHealth = starWarsGame.characterTwo.health;
-				starWarsGame.playerAttack = starWarsGame.characterTwo.attack;
-			} 
-
-			if(starWarsGame.characterTwo.defender){
-				defenderHealth = starWarsGame.characterTwo.health;
-				defenderAttack = starWarsGame.characterTwo.attack;
-			}
-		}
 	},
 
 	characterThree: {
@@ -70,20 +35,6 @@ var starWarsGame = {
 		attack: 20,
 		defender: false,
 		attacker: false,
-		setStats: function(){
-			if(starWarsGame.characterThree.attacker){
-				if(starWarsGame.playerHealth){
-					return;
-				}
-				starWarsGame.playerHealth = starWarsGame.characterThree.health;
-				starWarsGame.playerAttack = starWarsGame.characterThree.attack;
-			} 
-
-			if(starWarsGame.characterThree.defender){
-				starWarsGame.defenderHealth = starWarsGame.characterThree.health;
-				starWarsGame.defenderAttack = starWarsGame.characterThree.attack;
-			}
-		}
 	},
 
 	characterFour: {
@@ -91,22 +42,23 @@ var starWarsGame = {
 		attack: 20,
 		defender: false,
 		attacker: false,
-		setStats: function(){
-			if(starWarsGame.characterFour.attacker){
-				if(starWarsGame.playerHealth){
-					return;
-				}
-				starWarsGame.playerHealth = starWarsGame.characterFour.health;
-				starWarsGame.playerAttack = starWarsGame.characterFour.attack;
-			} 
-
-			if(starWarsGame.characterOne.defender){
-				starWarsGame.defenderHealth = starWarsGame.characterFour.health;
-				starWarsGame.defenderAttack = starWarsGame.characterFour.attack;
-			}
-		}
 	},
 	// end character classes
+
+	setCharStats: function(char){
+		if(starWarsGame[char].attacker){
+			if(starWarsGame.playerHealth){
+				return;
+			}
+			starWarsGame.playerHealth = starWarsGame[char].health;
+			starWarsGame.playerAttack = starWarsGame[char].attack;
+		} 
+
+		if(starWarsGame[char].defender){
+			starWarsGame.defenderHealth = starWarsGame[char].health;
+			starWarsGame.defenderAttack = starWarsGame[char].attack;
+		}
+	},
 
 	setPlayerStats: function(){
 		$(".player-health").text(starWarsGame.playerHealth);
@@ -151,10 +103,10 @@ $(".image-placeholder").click(function(){
 			starWarsGame.characterFour.attacker = true;
 		}
 
-		starWarsGame.characterOne.setStats();
-		starWarsGame.characterTwo.setStats();
-		starWarsGame.characterThree.setStats();
-		starWarsGame.characterFour.setStats();
+		starWarsGame.setCharStats('characterOne');
+		starWarsGame.setCharStats('characterTwo');
+		starWarsGame.setCharStats('characterThree');
+		starWarsGame.setCharStats('characterFour');
 
 		// sets the player health in the dom equal to the health of the selected character
 		starWarsGame.setPlayerStats();
@@ -180,10 +132,10 @@ $(".image-placeholder").click(function(){
 			starWarsGame.characterFour.defender = true;
 		}
 
-		starWarsGame.characterOne.setStats();
-		starWarsGame.characterTwo.setStats();
-		starWarsGame.characterThree.setStats();
-		starWarsGame.characterFour.setStats();
+		starWarsGame.setCharStats('characterOne');
+		starWarsGame.setCharStats('characterTwo');
+		starWarsGame.setCharStats('characterThree');
+		starWarsGame.setCharStats('characterFour');
 
 		starWarsGame.setDefenderStats();
 	}
@@ -191,6 +143,9 @@ $(".image-placeholder").click(function(){
 
 $(".fight-button").click(function(){
 	if($(".player-health").text() === ""){
+		return;
+	}
+	if($(".opponent-health").text() === ""){
 		return;
 	}
 	starWarsGame.playerHealth -= starWarsGame.defenderAttack;
@@ -201,13 +156,12 @@ $(".fight-button").click(function(){
 	if(starWarsGame.playerHealth < 1){
 		alert("You Lost! Refresh The Browser to Play Again.")
 	}
-	if(starWarsGame.defenderHealth < 1){
+	if(starWarsGame.defenderHealth < 0){
 		starWarsGame.clickIterator = 1;
 		$("#enemy").empty();
 		starWarsGame.wins++;
 		$(".opponent-health").text("")
 		if(starWarsGame.wins === 3){
-			alert("You Win!")
 		}
 	}
 
